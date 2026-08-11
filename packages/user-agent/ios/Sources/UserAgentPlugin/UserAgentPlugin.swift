@@ -6,7 +6,15 @@ import Capacitor
  * here: https://capacitorjs.com/docs/plugins/ios
  */
 @objc(UserAgentPlugin)
-public class UserAgentPlugin: CAPPlugin {
+public class UserAgentPlugin: CAPPlugin, CAPBridgedPlugin {
+    public let identifier = "UserAgentPlugin"
+    public let jsName = "UserAgent"
+    public let pluginMethods: [CAPPluginMethod] = [
+        CAPPluginMethod(name: "get", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "set", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "reset", returnType: CAPPluginReturnPromise)
+    ]
+
     @objc func get(_ call: CAPPluginCall) {
         DispatchQueue.main.async {
             self.bridge?.webView?.evaluateJavaScript("navigator.userAgent", completionHandler: { (result, error) in
