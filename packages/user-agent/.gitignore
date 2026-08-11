@@ -8,6 +8,10 @@ Podfile.lock
 Build
 xcuserdata
 
+# SPM - 라이브러리 패키지라 의존성 버전을 고정하지 않는다
+.build
+Package.resolved
+
 # macOS files
 .DS_Store
 
